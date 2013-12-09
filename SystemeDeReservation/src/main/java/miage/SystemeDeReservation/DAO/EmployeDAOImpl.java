@@ -55,7 +55,7 @@ public class EmployeDAOImpl implements EmployeDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<EmployeTable> getEmployes() {
-		return getCurrentSession().createQuery("from EmployeTable").list(); //A vérifier (pour les 3 classes du coup!)
+		return getCurrentSession().createQuery("from EmployeTable ORDER BY nom,prenom").list(); //A vérifier (pour les 3 classes du coup!)
 	}
 
 }

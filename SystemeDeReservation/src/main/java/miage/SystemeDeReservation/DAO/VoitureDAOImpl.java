@@ -55,6 +55,6 @@ public class VoitureDAOImpl implements VoitureDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<VoitureTable> getVoitures() {
-		return getCurrentSession().createQuery("from VoitureTable").list(); //A vérifier (pour les 3 classes du coup!)
+		return getCurrentSession().createQuery("from VoitureTable ORDER BY marque,modele").list(); //A vérifier (pour les 3 classes du coup!)
 	}
 }
