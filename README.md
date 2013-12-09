@@ -3,9 +3,10 @@ Reservation project
 Made by Mehdi belhadj Ahmed  & Ehrhart Laurent.
 Project made for the second year of Master Miage (Master of Business Informatics).
 
-Configure & run the project:
+Configure & run the project (on Ecplise Kernel):
 - Clone a Git Repository and type the URI (https://github.com/LaurentMehdi/Projet)
 - File -> import -> project from Git -> Existing local repository -> Choose the good project and click next -> Select the good repository and click next -> Finish
+- Right Click on the project -> Run As -> Maven Build -> Then put "tomcat7:run" on the input Goals -> Then click Run
 
 
 Use the software:
