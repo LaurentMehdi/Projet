@@ -5,9 +5,9 @@ Project made for the second year of Master Miage (Master of Business Informatics
 
 Configure & run the project (on Ecplise Kernel):
 - Clone a Git Repository and type the URI (https://github.com/LaurentMehdi/Projet)
-- File -> import -> project from Git -> Existing local repository -> Choose the good project and click next -> Select the good repository and click next -> Finish
+- File -> import -> project from Git -> Existing local repository -> Choose the good project and click next -> Select the good repository and click next -> Finish.
 At this point, you should have access to the project.
-- Right Click on the project -> Run As -> Maven Build -> Then put "tomcat7:run" on the input Goals -> Then click Run
+- Right Click on the project -> Run As -> Maven Build -> Then put "tomcat7:run" on the input Goals -> Then click Run.
 At this point, the server should be launched, you ca start the main page.
 
 Use the software:
