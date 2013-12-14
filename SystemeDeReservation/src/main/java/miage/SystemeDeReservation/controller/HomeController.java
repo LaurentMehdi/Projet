@@ -1,5 +1,6 @@
 package miage.SystemeDeReservation.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -36,7 +37,6 @@ public class HomeController {
 	private List<EmployeTable> employes;
 	private List<VoitureTable> voitures;
 	private List<ReservationTable> reservations;
-	
 	
 	
 	@RequestMapping(value="/")
@@ -80,10 +80,22 @@ public class HomeController {
 			if(result.hasErrors()){
 				modelAndView = new ModelAndView("CreationEmploye");
 			}else{
-			modelAndView = new ModelAndView("listeEmploye");
-			employeService.addEmploye(employe);
-			employes = employeService.getEmployes();
-			modelAndView.addObject("employes", employes);
+				String nomadd = employe.getNom();
+				String prenomadd = employe.getPrenom();
+				List<EmployeTable> listeemploye  = employeService.getEmployes();	
+				for (EmployeTable employeTable : listeemploye) {
+					String prenomemployeTable = employeTable.getPrenom();
+					String nomemployeTable = employeTable.getNom();
+					if((nomadd.equals(nomemployeTable))&&(prenomadd.equals(prenomemployeTable))){
+						modelAndView = new ModelAndView("CreationEmploye");
+						modelAndView.addObject("message", "Il y a déjà une personne avec ce nom et prénom"); 
+						return modelAndView;
+					}
+				}
+				modelAndView = new ModelAndView("listeEmploye");
+				employeService.addEmploye(employe);
+				employes = employeService.getEmployes();
+				modelAndView.addObject("employes", employes);
 			}
 			return modelAndView;
 		}
@@ -94,10 +106,20 @@ public class HomeController {
 			if(result.hasErrors()){
 				modelAndView = new ModelAndView("CreationVoiture");
 			}else{
-			modelAndView = new ModelAndView("listeVoiture");
-			voitureService.addVoiture(voiture);
-			voitures = voitureService.getVoitures();
-			modelAndView.addObject("voitures", voitures);
+				String immatriculationvoitureadd = voiture.getImmatriculation();
+				List<VoitureTable> listevoiture  = voitureService.getVoitures();	
+				for (VoitureTable voitureTable : listevoiture) {
+					String immatriculationvoitureTable = voitureTable.getImmatriculation();
+					if(immatriculationvoitureadd.equals(immatriculationvoitureTable)){
+						modelAndView = new ModelAndView("CreationVoiture");
+						modelAndView.addObject("message", "Il y a déjà une voiture avec cette plaque d'immatriculation"); 
+						return modelAndView;
+					}
+				}
+				modelAndView = new ModelAndView("listeVoiture");
+				voitureService.addVoiture(voiture);
+				voitures = voitureService.getVoitures();
+				modelAndView.addObject("voitures", voitures);
 			}
 			return modelAndView;
 		}
@@ -110,10 +132,60 @@ public class HomeController {
 				modelAndView.addObject("voitures", voitures);
 				modelAndView.addObject("employes", employes);
 			}else{
-				modelAndView = new ModelAndView("AffichageReservation");
-				reservationService.addReservation(reservation);
-				reservations = reservationService.getReservations();
-				modelAndView.addObject("reservations", reservations);
+				
+				Date datedebutreservation = new Date(reservation.getAnnee(),reservation.getMois(),reservation.getJour());
+				System.out.println("Datedebutreservation : "+datedebutreservation);
+				Date datefinreservation = new Date(reservation.getAnneef(),reservation.getMoisf(),reservation.getJourf());
+				System.out.println("Datefinreservation : "+datefinreservation);
+				int id_employereservation = reservation.getEmploye();
+				System.out.println("id_employereservation : "+id_employereservation);
+				int id_voiturereservation = reservation.getVoiture();
+				System.out.println("id_voiturereservation : "+id_voiturereservation);
+				List<ReservationTable> listereservation  = reservationService.getReservations();
+				for(ReservationTable reservationTable : listereservation) {
+					//ReservationTable reservationTable = reservationTable;
+					Date datedebut = new Date(reservationTable.getAnnee(),reservationTable.getMois(),reservationTable.getJour());
+					System.out.println("anneedebut : "+datedebut);
+					Date datefin = new Date(reservationTable.getAnneef(),reservationTable.getMoisf(),reservationTable.getJourf());
+					System.out.println("anneefin : "+datefin);
+					int id_employe = reservationTable.getEmploye();
+					System.out.println("id_employe : "+id_employe);
+					int id_voiture = reservationTable.getVoiture();
+					System.out.println("id_voiture : "+id_voiture);
+					if(
+							(
+									(
+											datedebutreservation.equals(datedebut)||datedebutreservation.equals(datefin)
+											
+									)||(
+											datedebutreservation.before(datefin)&&datedebutreservation.after(datedebut)
+									)||(
+											datefinreservation.before(datefin)&&datefinreservation.after(datedebut)
+									)||(
+											datefinreservation.equals(datedebut)||datefinreservation.equals(datefin)
+									)||(
+											datedebutreservation.before(datedebut)&&datefinreservation.after(datefin)
+										)
+							)&&
+							(
+									(id_employe==id_employereservation)||(id_voiture==id_voiturereservation)	
+							)
+							
+							
+						){
+						modelAndView = new ModelAndView("CreationReservation");
+						modelAndView.addObject("voitures", voitures);
+						modelAndView.addObject("employes", employes);
+						modelAndView.addObject("message", "Il y a déjà une réservation dans la même plage de date"); 
+						return modelAndView;
+					}
+					
+				}
+					//System.out.println("Comme n'existe pas on continue");
+					modelAndView = new ModelAndView("AffichageReservation");
+					reservationService.addReservation(reservation);
+					reservations = reservationService.getReservations();
+					modelAndView.addObject("reservations", reservations);
 			}
 			return modelAndView;
 		}

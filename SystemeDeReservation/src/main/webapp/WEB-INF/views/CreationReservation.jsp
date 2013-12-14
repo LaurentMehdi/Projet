@@ -29,6 +29,10 @@ body {
 		width: 900px;
 		margin: 0 auto;
 		}
+		
+		message {
+		color: red
+		}
 </style>
   </head>
   <body>
@@ -44,7 +48,7 @@ body {
 		<h1>Création d'une nouvelle réservation</h1>
 </div>
 
-
+ <message> ${message} </message>
 <!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="NomEmploye">Employé</label>
@@ -153,6 +157,7 @@ body {
 <div class="control-group">
   <label class="control-label" for="OkBouton"></label>
   <div class="controls">
+
   <form:button id="ValiderButton" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="submit" path="" >Valider</form:button>
     <a href="${pageContext.request.contextPath}/reservation/list">
     <form:button id="AnnulerButton" name="AnnulerButton" value="AnnulerButton" class="btn btn-danger" type="button" path="">Annuler</form:button>
@@ -192,6 +197,6 @@ body {
         }
       });
     </script>
-   
+ 
   </body>
   </html>

@@ -23,6 +23,9 @@ body {
 		width: 900px;
 		margin: 0 auto;
 		}
+		message {
+		color: red
+		}
 </style>
 </head>
 <body>
@@ -36,7 +39,7 @@ body {
 <div class="hero-unit">
 		<h1>Création d'une nouvelle voiture</h1>
 </div>
-
+ <message> ${message} </message>
 <!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="MarqueVehicule">Marque</label>
