@@ -134,24 +134,25 @@ public class HomeController {
 			}else{
 				
 				Date datedebutreservation = new Date(reservation.getAnnee(),reservation.getMois(),reservation.getJour());
-				System.out.println("Datedebutreservation : "+datedebutreservation);
+				System.out.println("datedebutreservation : "+datedebutreservation);
 				Date datefinreservation = new Date(reservation.getAnneef(),reservation.getMoisf(),reservation.getJourf());
 				System.out.println("Datefinreservation : "+datefinreservation);
+				if((datefinreservation.before(datedebutreservation))){
+					modelAndView = new ModelAndView("CreationReservation");
+					modelAndView.addObject("voitures", voitures);
+					modelAndView.addObject("employes", employes);
+					modelAndView.addObject("message", "La date de fin de réservation doit être ultérieure à la date de début de réservation!!!"); 
+					return modelAndView;
+				}
+			
 				int id_employereservation = reservation.getEmploye();
-				System.out.println("id_employereservation : "+id_employereservation);
 				int id_voiturereservation = reservation.getVoiture();
-				System.out.println("id_voiturereservation : "+id_voiturereservation);
 				List<ReservationTable> listereservation  = reservationService.getReservations();
 				for(ReservationTable reservationTable : listereservation) {
-					//ReservationTable reservationTable = reservationTable;
 					Date datedebut = new Date(reservationTable.getAnnee(),reservationTable.getMois(),reservationTable.getJour());
-					System.out.println("anneedebut : "+datedebut);
 					Date datefin = new Date(reservationTable.getAnneef(),reservationTable.getMoisf(),reservationTable.getJourf());
-					System.out.println("anneefin : "+datefin);
 					int id_employe = reservationTable.getEmploye();
-					System.out.println("id_employe : "+id_employe);
 					int id_voiture = reservationTable.getVoiture();
-					System.out.println("id_voiture : "+id_voiture);
 					if(
 							(
 									(
@@ -178,8 +179,7 @@ public class HomeController {
 						modelAndView.addObject("employes", employes);
 						modelAndView.addObject("message", "Il y a déjà une réservation dans la même plage de date"); 
 						return modelAndView;
-					}
-					
+					}					
 				}
 					//System.out.println("Comme n'existe pas on continue");
 					modelAndView = new ModelAndView("AffichageReservation");

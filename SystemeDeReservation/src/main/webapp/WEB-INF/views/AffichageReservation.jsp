@@ -58,6 +58,8 @@ body {
 		var calendar = $('#calendar').fullCalendar({
 			 eventClick: function(calEvent, jsEvent, view) {
 				 document.forms['form1'].suppr.value = calEvent.id;
+				 disabledFunc("SupprimerButton");
+				 disabledFunc("ModifierButton");
 			    },
 			header: {
 				left: 'prev,next today',
@@ -66,7 +68,7 @@ body {
 			},
 			selectable: true,
 			selectHelper: true,
-			editable: true,
+			editable: false,
 			
 			events: [
 
@@ -87,6 +89,7 @@ body {
 						evenClick: function( event, jsEvent, view ) {
 							alert('Event: ' + eve,t.title);
 							 $(this).css('border-color', 'red');
+							 
 							calendar.fullCalendar('unselect');
 						}
 		});
@@ -106,6 +109,11 @@ body {
 		return false;
 	}
 	
+	function disabledFunc(id)
+	{
+	    var divObj = document.getElementById(id);
+	    divObj.disabled = false;
+	}
 	function aller()
 	{
 	var valeur = document.forms['form1'].elements['suppr'].value; // Contient la valeur de l'<input />
@@ -120,14 +128,14 @@ body {
 
 <form id="form1" name="form1" class="form-horizontal" action="${pageContext.request.contextPath}/reservation/delete" method="POST">
 <div id='calendar'></div>
-<input type="text" id="suppr" name="suppr" path="suppr"/>
+<input type="HIDDEN" id="suppr" name="suppr" path="suppr"/>
 <a href="javascript:aller();">
-<button id="ValiderButton" display="yes" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="button" >Suppression</button>
+<button id="SupprimerButton" disabled="true" name="SupprimerButton" value="SupprimerButton" class="btn btn-success" type="button" >Suppression</button>
 </a>
 <form>
 <form id="form2" name="form2" class="form-horizontal" action="${pageContext.request.contextPath}/reservation/edit" method="POST">
 <a href="javascript:modifier();">
-<button id="ValiderButton" display="yes" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="button" >Modification</button>
+<button id="ModifierButton" disabled="true" name="ModifierButton" value="ModifierButton" class="btn btn-success" type="button" >Modification</button>
 </a>
 </form>
 </body>

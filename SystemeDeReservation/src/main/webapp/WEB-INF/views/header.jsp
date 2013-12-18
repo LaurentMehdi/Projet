@@ -16,7 +16,7 @@ background : url("<%=request.getContextPath() %>/resources/asset/css/dw4sn8ip.bm
 }
 </style>
 <body >
-    <h1 >Projet <small>Reservation</small></h1>
+    <h1 >Système de Réservation</h1>
     <jsp:include page="menu.jsp" ></jsp:include>
 	
 </body>
