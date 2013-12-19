@@ -111,17 +111,31 @@ body {
   </div>
 </div>
 
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="OkBouton"></label>
-  <div class="controls">
 
-  <form:button id="ValiderButton" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="submit" path="" >Valider</form:button>
-    <a href="${pageContext.request.contextPath}/reservation/list">
-    <form:button id="AnnulerButton" name="AnnulerButton" value="AnnulerButton" class="btn btn-danger" type="button" path="">Annuler</form:button>
-    </a>
-  </div>
-</div>
+<c:choose>
+    <c:when test="${empty employes}">
+        <p class="error">Il n'existe aucun employé</p>
+        <form:button id="ValiderButton" disabled="true" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="submit" path="" >Valider</form:button>
+   		<a href="${pageContext.request.contextPath}/reservation/list">
+    	<form:button id="AnnulerButton" disabled="true" name="AnnulerButton" value="AnnulerButton" class="btn btn-danger" type="button" path="">Annuler</form:button>
+    	</a>
+    </c:when>
+    <c:when test="${empty voitures}">
+      <p class="error">Il n'existe aucune voiture</p>
+        <form:button id="ValiderButton" disabled="true" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="submit" path="" >Valider</form:button>
+   		<a href="${pageContext.request.contextPath}/reservation/list">
+    	<form:button id="AnnulerButton" disabled="true" name="AnnulerButton" value="AnnulerButton" class="btn btn-danger" type="button" path="">Annuler</form:button>
+    	</a>
+    </c:when>
+    <c:otherwise>
+         <form:button id="ValiderButton" disabled="false" name="ValiderButton" value="ValiderButton" class="btn btn-success" type="submit" path="" >Valider</form:button>
+   		<a href="${pageContext.request.contextPath}/reservation/list">
+    	<form:button id="AnnulerButton" disabled="false" name="AnnulerButton" value="AnnulerButton" class="btn btn-danger" type="button" path="">Annuler</form:button>
+    	</a>
+    </c:otherwise>
+</c:choose>
+
+
 
 </fieldset>
 </form:form>  

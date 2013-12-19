@@ -27,5 +27,9 @@ body {
 </style>
     <body>
         	<jsp:include page="header.jsp"></jsp:include>
+        	<span class="label label-info"><h2>M2 Miage 2013/2014</h2></span><br/><br/>
+   			<span class="label label-info"><h2>Projet application web</h2><br/></span><br/><br/>
+        	<span class="label label-info"><h2>Mehdi Belhadj Ahmed & Laurent Ehrhart</h2></span><br/><br/>
+        	<span class="label label-info"><h2>Enseignant : Sébastien Etter</h2></span><br/><br/>
     </body>
 </html>
