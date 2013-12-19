@@ -30,7 +30,7 @@ body {
 		}
 
 	#calendar {
-		width: 900px;
+		width: 750px;
 		margin: 0 auto;
 		}
 </style>
@@ -42,20 +42,8 @@ body {
 <script>
 
 	$(document).ready(function() {
-		
-		//document.form1.submit();
-		var date = new Date();
-		
-		var d = date.getDate();
-		
-		var m = date.getMonth();
-		
-		var id = 1;
-		var y = date.getFullYear();
-	
-		var title = "erz";
-		
 		var calendar = $('#calendar').fullCalendar({
+
 			 eventClick: function(calEvent, jsEvent, view) {
 				 document.forms['form1'].suppr.value = calEvent.id;
 				 disabledFunc("SupprimerButton");
@@ -76,14 +64,14 @@ body {
 						{
 							id: '${reservation.id}',
 							title: '${reservation.raisonReservation}',
-							start:  new Date('${reservation.annee}','${reservation.mois}','${reservation.jour}'),
-							end:  new Date('${reservation.anneef}','${reservation.moisf}','${reservation.jourf}')
+							start: '${reservation.début}',
+							end:  '${reservation.fin}'
 						},
 						</c:forEach>
 						{
 							title: '',
-							start: new Date(2000, m, 28),
-							end: new Date(2000, m, 29)
+							start: new Date(2000, 10, 28),
+							end: new Date(2000, 10, 29)
 						}
 						],
 						evenClick: function( event, jsEvent, view ) {
@@ -94,21 +82,6 @@ body {
 						}
 		});
 	});
-	var isElemOverDiv = function(draggedItem, dropArea) {
-		// Prep coords for our two elements
-		var a = $(draggedItem).offset;	
-		a.right = $(draggedItem).outerWidth + a.left;
-		a.bottom = $(draggedItem).outerHeight + a.top;
-		
-		var b = $(dropArea).offset;
-		a.right = $(dropArea).outerWidth + b.left;
-		a.bottom = $(dropArea).outerHeight + b.top;
-
-		// Compare
-		if (a.left >= b.left || a.top >= b.top || a.right <= b.right || a.bottom <= b.bottom) { return true; }
-		return false;
-	}
-	
 	function disabledFunc(id)
 	{
 	    var divObj = document.getElementById(id);
@@ -130,7 +103,7 @@ body {
 <div id='calendar'></div>
 <input type="HIDDEN" id="suppr" name="suppr" path="suppr"/>
 <a href="javascript:aller();">
-<button id="SupprimerButton" disabled="true" name="SupprimerButton" value="SupprimerButton" class="btn btn-success" type="button" >Suppression</button>
+<button id="SupprimerButton" disabled="true" name="SupprimerButton" value="SupprimerButton" class="btn btn-success" type="button" onclick="return confirm('Voulez vous vraiment supprimer ?')" >Suppression</button>
 </a>
 <form>
 <form id="form2" name="form2" class="form-horizontal" action="${pageContext.request.contextPath}/reservation/edit" method="POST">

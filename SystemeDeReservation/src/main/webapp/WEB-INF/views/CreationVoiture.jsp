@@ -45,7 +45,7 @@ body {
   <label class="control-label" for="MarqueVehicule">Marque</label>
   <form:errors cssClass="error" path="marque"></form:errors>
   <div class="controls">
-    <form:input id="MarqueVehicule" name="MarqueVehicule" placeholder="" class="input-xlarge" type="text" path="marque"/>
+    <form:input id="MarqueVehicule" name="MarqueVehicule" placeholder="Marque" class="input-xlarge" type="text" path="marque"/>
   </div>
 </div>
 
@@ -54,7 +54,7 @@ body {
   <label class="control-label" for="ModeleVehicule">Modèle</label>
   <form:errors cssClass="error" path="modele"></form:errors>
   <div class="controls">
-    <form:input id="ModeleVehicule" name="ModeleVehicule" placeholder="" class="input-xlarge" type="text" path="modele"/>  
+    <form:input id="ModeleVehicule" name="ModeleVehicule" placeholder="Modèle" class="input-xlarge" type="text" path="modele"/>  
   </div>
 </div>
 
@@ -63,7 +63,7 @@ body {
   <label class="control-label" for="AnneeVehicule">Année</label>
   <form:errors cssClass="error" path="annee"></form:errors>
   <div class="controls">
-    <form:input id="AnneeVehicule" name="AnneeVehicule" placeholder="" class="input-xlarge" type="text" path="annee"/>
+    <form:input id="AnneeVehicule" name="AnneeVehicule" placeholder="Année" class="input-xlarge" type="text" path="annee"/>
   </div>
 </div>
 
@@ -72,7 +72,7 @@ body {
   <label class="control-label" for="ImmatriculationVehicule">Immatriculation</label>
   <form:errors cssClass="error" path="immatriculation"></form:errors>
   <div class="controls">
-    <form:input id="ImmatriculationVehicule" name="ImmatriculationVehicule" placeholder="" class="input-xlarge" type="text" path="immatriculation"/>
+    <form:input id="ImmatriculationVehicule" name="ImmatriculationVehicule" placeholder="Immatriculation" class="input-xlarge" type="text" path="immatriculation"/>
   </div>
 </div>
 

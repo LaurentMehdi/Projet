@@ -30,12 +30,8 @@ public class ReservationDAOImpl implements ReservationDAO{
 		
 		Rmaj.setEmploye(r.getEmploye());
 		Rmaj.setVoiture(r.getVoiture());
-		Rmaj.setAnnee(r.getAnnee());
-		Rmaj.setAnneef(r.getAnneef());
-		Rmaj.setMois(r.getMois());
-		Rmaj.setMoisf(r.getMoisf());
-		Rmaj.setJour(r.getJour());
-		Rmaj.setJourf(r.getJourf());
+		Rmaj.setDébut(r.getDébut());
+		Rmaj.setFin(r.getFin());
 		Rmaj.setRaisonReservation(r.getRaisonReservation());
 	}
 

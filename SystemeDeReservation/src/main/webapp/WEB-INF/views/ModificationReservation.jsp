@@ -14,6 +14,12 @@
  <link href ="<%=request.getContextPath() %>/resources/datepicker/less/datepicker.less" rel="stylesheet" media = "screen"/>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link href="<%=request.getContextPath() %>/resources/select/select2.css" rel="stylesheet"/>
+<script src="<%=request.getContextPath() %>/resources/select/select2.js"></script>
+<script>
+$(document).ready(function() { $("#choix_voiture").select2(); });
+$(document).ready(function() { $("#choix_employe").select2(); });
+</script>
 <style>
 .error{
 color: red
@@ -39,16 +45,18 @@ body {
 <fieldset>
 
 <!-- Form Name -->
-<legend>Modification d'une réservation</legend>
+<div class="hero-unit">
+		<h1>Modification d'une réservation</h1>
+</div>
 
 <!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="NomEmploye">Employé</label>
   <form:errors cssClass="error" path="employe"></form:errors>
   <div class="controls">
-    <form:select id="choix" name="choix" class="input-xlarge" path="employe">
-    <c:forEach var="employen" items="${employes}">
-          <form:option id="${employen.id}" value="${employen.id}">${employen.nom}-${employen.prenom}</form:option>
+    <form:select id="choix_employe" name="choix_employe" class="input-xlarge" path="employe">
+    <c:forEach var="employe" items="${employes}">
+          <form:option id="${employe.id}" value="${employe.id}">${employe.nom} ${employe.prenom}</form:option>
     </c:forEach>
     </form:select>
     
@@ -61,9 +69,9 @@ body {
    <form:errors cssClass="error" path="voiture"></form:errors>
   <div class="controls">
   
-    <form:select id="choix" name="choix" class="input-xlarge" path="voiture">
+    <form:select id="choix_voiture" name="choix_voiture" class="input-xlarge" path="voiture">
     <c:forEach var="voituren" items="${voitures}">
-          <form:option id="${voituren.id}" value="${voituren.id}">${voituren.marque}-${voituren.modele}</form:option>
+          <form:option id="${voiture.id}" value="${voiture.id}">${voiture.marque} ${voiture.modele} ${voiture.immatriculation}</form:option>
     </c:forEach>
     </form:select>
    
@@ -71,79 +79,32 @@ body {
 </div>
 
 <div class="control-group">
-  <label class="control-label" for="DebutReservation">Début réservation</label>
-    <form:errors cssClass="error" path="jour"></form:errors>
-  <div class="controls">
-  <input id="DebutReservation" name="DebutReservation" type="text" class="datepicker"/>
-    </div>
-   </div>
+  <label class="control-label" for="début">Début de la réservation</label>
+  <div class="controls">                     
+    <input id="début" placeholder="Début réservation" name="début" path="début"  type="text" class="datepicker" ></input>
+    
+  </div>
+</div>
 
-
-<!-- Text input-->
+<!-- Text -->
 <div class="control-group">
-  <label class="control-label" for="FinReservation">Fin réservation</label>
-  <form:errors cssClass="error" path="jourf"></form:errors>
-  <div class="controls">
-  <input id="FinReservation" name="FinReservation" type="text" class="datepicker"/>
-    </div>
-   </div>
+  <label class="control-label" for="fin">Fin de la réservation</label>
+  <div class="controls">                     
+    <input id="fin" placeholder="Fin réservation" name="fin" path="fin"  type="text" class="datepicker"></input>
+    
+  </div>
+</div>
 
 <!-- Text -->
 <div class="control-group">
   <label class="control-label" for="RaisonRervation">Raison de la réservation</label>
   <form:errors cssClass="error" path="raisonReservation"></form:errors>
   <div class="controls">                     
-    <form:input id="RaisonRervation" name="RaisonRervation" placeholder=""  path="raisonReservation" type="text"></form:input>
+    <form:input id="RaisonRervation" name="RaisonRervation" placeholder=""  path="raisonReservation" type="text" ></form:input>
     
   </div>
 </div>
 
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="anneeR1" path="annee"/>
- </div>
-</div>
-
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="anneefR1" path="anneef"/>
- </div>
-</div>
-
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="moisR1" path="mois"/>
- </div>
-</div>
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="moisfR1" path="moisf"/>
- </div>
-</div>
-
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="jourR1" path="jour"/>
- </div>
-</div>
-
-
-<div class="control-group">
-  <label class="control-label" for="anneedebutreservation"/>
-  <div class="controls">   
-<form:input type="hidden" id="jourfR1" path="jourf"/>
- </div>
-</div>
 
 <!-- Button (Double) -->
 <div class="control-group">
@@ -162,30 +123,24 @@ body {
  </page>
   
     <script>
-    $('#DebutReservation.datepicker').datepicker({
+    $('#début.datepicker').datepicker({
    
         onSelect: function(dateText, inst) { 
         	
-            var date =  $('#DebutReservation').datepicker('getDate'),
+            var date =  $('#début').datepicker('getDate'),
                 day  = date.getDate(),  
                 month = date.getMonth(),    
                 year =  date.getFullYear();
-            	document.forms['form1'].jourR1.value = day;
-            	document.forms['form1'].moisR1.value = month;
-            	document.forms['form1'].anneeR1.value = year;
         }
       });
-    $('#FinReservation.datepicker').datepicker({
+    $('#fin.datepicker').datepicker({
     	
         onSelect: function(dateText, inst) { 
         	
-            var date =  $('#FinReservation').datepicker('getDate'),
+            var date =  $('#fin').datepicker('getDate'),
                 day  = date.getDate(),  
                 month = date.getMonth(),    
                 year =  date.getFullYear();
-           		document.forms['form1'].jourfR1.value = day;
-           		document.forms['form1'].moisfR1.value = month;
-           		document.forms['form1'].anneefR1.value = year;
         }
       });
     </script>

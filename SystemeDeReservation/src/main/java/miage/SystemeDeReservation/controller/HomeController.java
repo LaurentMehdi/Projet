@@ -133,9 +133,9 @@ public class HomeController {
 				modelAndView.addObject("employes", employes);
 			}else{
 				
-				Date datedebutreservation = new Date(reservation.getAnnee(),reservation.getMois(),reservation.getJour());
+				Date datedebutreservation = reservation.getDébut();
 				System.out.println("datedebutreservation : "+datedebutreservation);
-				Date datefinreservation = new Date(reservation.getAnneef(),reservation.getMoisf(),reservation.getJourf());
+				Date datefinreservation = reservation.getFin();
 				System.out.println("Datefinreservation : "+datefinreservation);
 				if((datefinreservation.before(datedebutreservation))){
 					modelAndView = new ModelAndView("CreationReservation");
@@ -149,8 +149,8 @@ public class HomeController {
 				int id_voiturereservation = reservation.getVoiture();
 				List<ReservationTable> listereservation  = reservationService.getReservations();
 				for(ReservationTable reservationTable : listereservation) {
-					Date datedebut = new Date(reservationTable.getAnnee(),reservationTable.getMois(),reservationTable.getJour());
-					Date datefin = new Date(reservationTable.getAnneef(),reservationTable.getMoisf(),reservationTable.getJourf());
+					Date datedebut = reservationTable.getDébut();
+					Date datefin = reservationTable.getFin();
 					int id_employe = reservationTable.getEmploye();
 					int id_voiture = reservationTable.getVoiture();
 					if(
@@ -195,7 +195,9 @@ public class HomeController {
 			ModelAndView modelAndView = new ModelAndView("listeEmploye");
 			employes = employeService.getEmployes();
 			modelAndView.addObject("employes", employes);
-
+			if(employes.isEmpty()){
+				modelAndView.addObject("messages", "Il n'y a aucun utilisateur pour le moment");
+			}
 			return modelAndView;
 		}
 		
@@ -204,7 +206,9 @@ public class HomeController {
 			ModelAndView modelAndView = new ModelAndView("listeVoiture");
 			voitures = voitureService.getVoitures();
 			modelAndView.addObject("voitures", voitures);
-
+			if(voitures.isEmpty()){
+				modelAndView.addObject("messages", "Il n'y a aucune voiture pour le moment");
+			}
 			return modelAndView;
 		}
 		
@@ -217,16 +221,6 @@ public class HomeController {
 			return modelAndView;
 		}
 		
-	/*	@RequestMapping(value="/reservation/add",method=RequestMethod.POST)
-		public ModelAndView addingReservation(@ModelAttribute("reservation") ReservationTable reservation) {
-			ReservationTable table = new ReservationTable();
-			ModelAndView modelAndView = new ModelAndView("CreationReservation");
-			reservationService.addReservation(reservation);			
-			reservations = reservationService.getReservations();
-			modelAndView.addObject("reservations", reservations);
-			return modelAndView;
-		}*/
-
 		@RequestMapping(value="/employe/edit/{id}", method=RequestMethod.GET)
 		public ModelAndView editEmployePage(@PathVariable Integer id) {
 			ModelAndView modelAndView = new ModelAndView("ModificationEmploye");
@@ -284,7 +278,6 @@ public class HomeController {
 		public ModelAndView edditingReservation(@Valid @ModelAttribute("reservation") ReservationTable reservation,BindingResult result,@PathVariable Integer id) {
 			ModelAndView modelAndView ;
 			if(result.hasErrors()){
-				System.out.println("rfr");
 				reservation.setId(id);
 				modelAndView = new ModelAndView("ModificationReservation");
 				modelAndView.addObject("voitures", voitures);
@@ -317,6 +310,15 @@ public class HomeController {
 			ModelAndView modelAndView = new ModelAndView("listeEmploye");
 			employeService.deleteEmploye(id);
 			employes = employeService.getEmployes();
+			List<ReservationTable> listereservation  = reservationService.getReservations();
+			//Suppression des réservations du client
+			for(ReservationTable reservationTable : listereservation) {
+				if(reservationTable.getEmploye()==id){
+					reservationService.deleteReservation(reservationTable.getId());
+				}
+			}
+			//On maj la liste des reservations
+			reservations=reservationService.getReservations();
 			modelAndView.addObject("employes", employes);
 			return modelAndView;
 		}
@@ -326,6 +328,15 @@ public class HomeController {
 			ModelAndView modelAndView = new ModelAndView("listeVoiture");
 			voitureService.deleteVoiture(id);
 			voitures = voitureService.getVoitures();
+			List<ReservationTable> listereservation  = reservationService.getReservations();
+			//Suppression des réservations de la voiture
+			for(ReservationTable reservationTable : listereservation) {
+				if(reservationTable.getVoiture()==id){
+					reservationService.deleteReservation(reservationTable.getId());
+				}
+			}
+			//On maj la liste des reservations
+			reservations=reservationService.getReservations();
 			modelAndView.addObject("voitures", voitures);
 			return modelAndView;
 		}

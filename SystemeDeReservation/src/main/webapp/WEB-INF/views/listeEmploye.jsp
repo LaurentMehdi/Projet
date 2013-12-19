@@ -31,6 +31,9 @@ body {
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="menuemploye.jsp"></jsp:include>
+<c:if test="${!empty messages}">
+<span class="label label-warning"><h2>${messages}</h2></span>
+</c:if>
 <div class="container">
 	<div class="row">
         <div class="span12">
@@ -49,13 +52,13 @@ body {
 	                    		</h4>
                     	</td>
                      	<td>		
-                   			<a href="${pageContext.request.contextPath}/employe/edit/${employe.id}" class="btn btn-primary icon  pull-right">Editer</a>
+                   			<a href="${pageContext.request.contextPath}/employe/edit/${employe.id}" class="btn btn-primary icon  pull-right">Modifier</a>
                     	</td>
                      </tr>	
                      <tr>
                      	<td/>
                      		<td>
-                    		 <a href="${pageContext.request.contextPath}/employe/delete/${employe.id}" class="btn btn-primary icon  pull-right">Supprimer</a>
+                    		 <a href="${pageContext.request.contextPath}/employe/delete/${employe.id}" class="btn btn-primary icon  pull-right" onclick="return confirm('Voulez vous vraiment supprimer ?')" >Supprimer</a>
                      		</td>
                      
                     </div>

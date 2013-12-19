@@ -45,7 +45,7 @@ body {
   <label class="control-label" for="NomEmploye">Nom</label>
   <form:errors cssClass="error" path="nom"></form:errors>
   <div class="controls">
-    <form:input id="NomEmploye" name="NomEmploye" placeholder="" class="input-xlarge" type="text" path="nom"/>
+    <form:input id="NomEmploye" name="NomEmploye" placeholder="Nom" class="input-xlarge" type="text" path="nom"/>
   </div>
 </div>
 
@@ -54,7 +54,7 @@ body {
   <label class="control-label" for="PrenomEmploye">Prénom</label>
    <form:errors cssClass="error" path="prenom"></form:errors>
   <div class="controls">
-    <form:input id="PrenomEmploye" name="PrenomEmploye" placeholder="" class="input-xlarge" type="text" path="prenom"/>
+    <form:input id="PrenomEmploye" name="PrenomEmploye" placeholder="Prénom" class="input-xlarge" type="text" path="prenom"/>
   </div>
 </div>
 
@@ -63,7 +63,7 @@ body {
   <label class="control-label" for="AgeEmploye">Age</label>
    <form:errors cssClass="error" path="age"></form:errors>
   <div class="controls">
-    <form:input id="AgeEmploye" name="AgeEmploye" placeholder="" class="input-xlarge" type="text" path="age"/>
+    <form:input id="AgeEmploye" name="AgeEmploye" placeholder="Age" class="input-xlarge" type="text" path="age"/>
   </div>
 </div>
 
@@ -72,7 +72,7 @@ body {
   <label class="control-label" for="TelEmploye">Téléphone</label>
   <form:errors cssClass="error" path="tel"></form:errors>
   <div class="controls">
-    <form:input id="TelEmploye" name="TelEmploye" placeholder="" class="input-xlarge" type="text" path="tel"/>
+    <form:input id="TelEmploye" name="TelEmploye" placeholder="Téléphone" class="input-xlarge" type="text" path="tel"/>
   </div>
 </div>
 
@@ -81,7 +81,7 @@ body {
   <label class="control-label" for="MailEmploye">E-Mail</label>
    <form:errors cssClass="error" path="mail"></form:errors>
   <div class="controls">
-    <form:input id="MailEmploye" name="MailEmploye" placeholder="" class="input-xlarge" type="text" path="mail"/>
+    <form:input id="MailEmploye" name="MailEmploye" placeholder="E-Mail" class="input-xlarge" type="text" path="mail"/>
   </div>
 </div>
 
