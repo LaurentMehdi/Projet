@@ -43,7 +43,6 @@ public class VoitureTable {
 	
 	//Getters & Setters
 	public int getId(){
-		System.out.println("ID DU MOSIEUR :"+id);
 		return id;
 	}
 	
