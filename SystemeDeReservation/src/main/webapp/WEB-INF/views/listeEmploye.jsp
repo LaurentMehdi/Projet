@@ -52,13 +52,13 @@ body {
 	                    		</h4>
                     	</td>
                      	<td>		
-                   			<a href="${pageContext.request.contextPath}/employe/edit/${employe.id}" class="btn btn-primary icon  pull-right">Modifier</a>
+                   			<a href="${pageContext.request.contextPath}/employe/edit/${employe.id}" class="btn btn-primary icon  pull-right btn-block">Modifier</a>
                     	</td>
                      </tr>	
                      <tr>
                      	<td/>
                      		<td>
-                    		 <a href="${pageContext.request.contextPath}/employe/delete/${employe.id}" class="btn btn-primary icon  pull-right" onclick="return confirm('Voulez vous vraiment supprimer ?')" >Supprimer</a>
+                    		 <a href="${pageContext.request.contextPath}/employe/delete/${employe.id}" class="btn btn-primary icon  pull-right btn-block" onclick="return confirm('Voulez vous vraiment supprimer ?')" >Supprimer</a>
                      		</td>
                      
                     </div>

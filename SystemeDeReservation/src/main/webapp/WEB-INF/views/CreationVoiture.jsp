@@ -63,7 +63,7 @@ body {
   <label class="control-label" for="AnneeVehicule">Année</label>
   <form:errors cssClass="error" path="annee"></form:errors>
   <div class="controls">
-    <form:input id="AnneeVehicule" name="AnneeVehicule" placeholder="Année" class="input-xlarge" type="text" path="annee"/>
+    <form:input id="AnneeVehicule" name="AnneeVehicule" placeholder="Année" class="input-xlarge" type="number" path="annee"/>
   </div>
 </div>
 

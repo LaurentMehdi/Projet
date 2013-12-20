@@ -16,13 +16,13 @@ public class VoitureTable {
 	@Id
 	@GeneratedValue
 	private Integer id; //Identificateur unique de la voiture 
-	@NotEmpty
+	@NotEmpty(message="Marque obligatoire")
 	private String marque; //Marque de la voiture. Exemple: Peuge*t
-	@NotEmpty
+	@NotEmpty(message="Modèle obligatoire")
 	private String modele;//Modele de la voiture. Exemple: 3*8
-	@NotNull
-	private int annee; //Année de commercialisation de la voiture. Exemple: 2008
-	@NotEmpty
+	@NotNull(message="Année obligatoire")
+	private Integer annee; //Année de commercialisation de la voiture. Exemple: 2008
+	@NotEmpty(message="Immatriculation obligatoire")
 	private String immatriculation; //Immatriculatin de la voiture. Exemple: B*-78*-Y*
 	
 	//Constructeur par défaut, initialise tous les champ à 0 ou "". Créé un employé vide.
@@ -58,10 +58,10 @@ public class VoitureTable {
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
-	public int getAnnee() {
+	public Integer getAnnee() {
 		return annee;
 	}
-	public void setAnnee(int annee) {
+	public void setAnnee(Integer annee) {
 		this.annee = annee;
 	}
 	public String getImmatriculation() {
