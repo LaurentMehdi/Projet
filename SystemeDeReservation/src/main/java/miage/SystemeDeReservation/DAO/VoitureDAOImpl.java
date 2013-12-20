@@ -26,21 +26,16 @@ public class VoitureDAOImpl implements VoitureDAO {
 
 	@Override
 	public void majVoiture(VoitureTable v) {
-		System.out.println("début majVoiture de DAOIMPL");
-		System.out.println("début du get de majVoiture de DAOIMPL");
 		VoitureTable Vmaj = getVoiture(v.getId());
-		System.out.println("fin du get de majVoiture de DAOIMPL");
 		Vmaj.setMarque(v.getMarque());
 		Vmaj.setModele(v.getModele());
 		Vmaj.setAnnee(v.getAnnee());
 		Vmaj.setImmatriculation(v.getImmatriculation());
-		System.out.println("fin du majVoiture de DAOIMPL");
 	}
 
 	@Override
 	public VoitureTable getVoiture(int id) {
 		VoitureTable voiture = (VoitureTable) getCurrentSession().get(VoitureTable.class, id);
-		System.out.println("voitureid "+voiture.getId());
 		return voiture;
 	}
 

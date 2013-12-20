@@ -23,9 +23,7 @@ public class VoitureServiceImpl implements VoitureService {
 
 	@Override
 	public void majVoiture(VoitureTable v) {
-		System.out.println("début du majVoiture deserviceIMPL");
 		voitureDAO.majVoiture(v);
-		System.out.println("fin du majVoiture deserviceIMPL");
 	}
 
 	@Override

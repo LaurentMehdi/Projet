@@ -70,7 +70,7 @@ body {
   <div class="controls">
   
     <form:select id="choix_voiture" name="choix_voiture" class="input-xlarge" path="voiture">
-    <c:forEach var="voituren" items="${voitures}">
+    <c:forEach var="voiture" items="${voitures}">
           <form:option id="${voiture.id}" value="${voiture.id}">${voiture.marque} ${voiture.modele} ${voiture.immatriculation}</form:option>
     </c:forEach>
     </form:select>

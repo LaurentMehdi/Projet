@@ -30,7 +30,6 @@ public class EmployeDAOImpl implements EmployeDAO{
 		
 		Emaj.setNom(e.getNom());
 		Emaj.setPrenom(e.getPrenom());
-		Emaj.setAge(e.getAge());
 		Emaj.setMail(e.getMail());
 		Emaj.setTel(e.getTel());
 		Emaj.setSexe(e.getSexe());
@@ -40,7 +39,6 @@ public class EmployeDAOImpl implements EmployeDAO{
 	@Override
 	public EmployeTable getEmploye(int id) {
 		EmployeTable employe = (EmployeTable) getCurrentSession().get(EmployeTable.class, id);
-		System.out.println("employeid "+employe.getId());
 		return employe;
 	}
 

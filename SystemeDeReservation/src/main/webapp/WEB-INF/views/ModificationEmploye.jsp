@@ -56,15 +56,6 @@ body {
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="AgeEmploye">Age</label>
-  <form:errors cssClass="error" path="age"></form:errors>
-  <div class="controls">
-    <form:input id="AgeEmploye" name="AgeEmploye" placeholder="Age" class="input-xlarge" type="text" path="age"/>   
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
   <label class="control-label" for="TelEmploye">Téléphone</label>
       <form:errors cssClass="error" path="tel"></form:errors>
   <div class="controls">

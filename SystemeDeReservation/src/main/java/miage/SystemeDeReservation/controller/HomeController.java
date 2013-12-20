@@ -52,14 +52,14 @@ public class HomeController {
 	@RequestMapping(value="/employe/add")
 	public ModelAndView addEmployePage() {
 		ModelAndView modelAndView = new ModelAndView("CreationEmploye");
-		modelAndView.addObject("employe", new EmployeTable("nom","prenom",2,"51561","mej@uh.fr","Homme"));
+		modelAndView.addObject("employe", new EmployeTable());
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/voiture/add")
 	public ModelAndView addVoiturePage() {
 		ModelAndView modelAndView = new ModelAndView("CreationVoiture");
-		modelAndView.addObject("voiture", new VoitureTable("peugeot","406",1254,"fze-45fez-ezf"));
+		modelAndView.addObject("voiture", new VoitureTable());
 		return modelAndView;
 	}
 	
@@ -68,7 +68,6 @@ public class HomeController {
 	public ModelAndView addReservationPage() {
 		ModelAndView modelAndView = new ModelAndView("CreationReservation");
 		modelAndView.addObject("voitures",voitureService.getVoitures());
-		//System.out.println("employe " + employeService.getEmployes().size());
 		modelAndView.addObject("employes",employeService.getEmployes());
 		modelAndView.addObject("reservation", new ReservationTable());
 		return modelAndView;
@@ -134,9 +133,7 @@ public class HomeController {
 			}else{
 				
 				Date datedebutreservation = reservation.getDébut();
-				System.out.println("datedebutreservation : "+datedebutreservation);
 				Date datefinreservation = reservation.getFin();
-				System.out.println("Datefinreservation : "+datefinreservation);
 				if((datefinreservation.before(datedebutreservation))){
 					modelAndView = new ModelAndView("CreationReservation");
 					modelAndView.addObject("voitures", voitures);

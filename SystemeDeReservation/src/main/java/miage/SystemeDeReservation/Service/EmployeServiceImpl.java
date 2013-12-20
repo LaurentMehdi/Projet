@@ -23,7 +23,6 @@ public class EmployeServiceImpl implements EmployeService {
 	}
 
 	public void majEmploye(EmployeTable e) {
-		System.out.print("id2"+e.getId());
 		employeDAO.majEmploye(e);
 	}
 

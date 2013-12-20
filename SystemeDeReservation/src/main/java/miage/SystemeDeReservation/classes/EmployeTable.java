@@ -24,9 +24,6 @@ public class EmployeTable {
 	@NotEmpty(message="Prénom obligatoire")
 	private String prenom;
 	
-	@NotNull(message="Age obligatoire")
-	private int age;
-	
 	@NotEmpty(message="Numéro de téléphone obligatoire")
 	private String tel;
 	
@@ -41,17 +38,15 @@ public class EmployeTable {
 	public EmployeTable(){
 		nom = "";
 		prenom="";
-		age = 0;
 		tel ="";
 		mail="";
 		sexe = "";
 	}
 	
 	//Constructeur
-	public EmployeTable(String nom, String prenom, int age, String tel, String mail, String sexe){
+	public EmployeTable(String nom, String prenom, String tel, String mail, String sexe){
 		this.nom = nom;
 		this.prenom = prenom;
-		this.age = age;
 		this.tel = tel;
 		this.mail = mail;
 		this.sexe = sexe;
@@ -77,14 +72,6 @@ public class EmployeTable {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getTel() {
