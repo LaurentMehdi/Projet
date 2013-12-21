@@ -79,18 +79,6 @@ public class HomeController {
 			if(result.hasErrors()){
 				modelAndView = new ModelAndView("CreationEmploye");
 			}else{
-				String nomadd = employe.getNom();
-				String prenomadd = employe.getPrenom();
-				List<EmployeTable> listeemploye  = employeService.getEmployes();	
-				for (EmployeTable employeTable : listeemploye) {
-					String prenomemployeTable = employeTable.getPrenom();
-					String nomemployeTable = employeTable.getNom();
-					if((nomadd.equals(nomemployeTable))&&(prenomadd.equals(prenomemployeTable))){
-						modelAndView = new ModelAndView("CreationEmploye");
-						modelAndView.addObject("message", "Il y a déjà une personne avec ce nom et prénom"); 
-						return modelAndView;
-					}
-				}
 				modelAndView = new ModelAndView("listeEmploye");
 				employeService.addEmploye(employe);
 				employes = employeService.getEmployes();
@@ -106,15 +94,6 @@ public class HomeController {
 				modelAndView = new ModelAndView("CreationVoiture");
 			}else{
 				String immatriculationvoitureadd = voiture.getImmatriculation();
-				List<VoitureTable> listevoiture  = voitureService.getVoitures();	
-				for (VoitureTable voitureTable : listevoiture) {
-					String immatriculationvoitureTable = voitureTable.getImmatriculation();
-					if(immatriculationvoitureadd.equals(immatriculationvoitureTable)){
-						modelAndView = new ModelAndView("CreationVoiture");
-						modelAndView.addObject("message", "Il y a déjà une voiture avec cette plaque d'immatriculation"); 
-						return modelAndView;
-					}
-				}
 				modelAndView = new ModelAndView("listeVoiture");
 				voitureService.addVoiture(voiture);
 				voitures = voitureService.getVoitures();

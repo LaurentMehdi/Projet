@@ -73,12 +73,18 @@ body {
   </div>
 </div>
 
-<!-- Text input -->
 <div class="control-group">
-  <label class="control-label" for="SexeEmploye">Sexe</label>
+  <label class="control-label" for="SexRadio">Sexe</label>
+  <form:errors cssClass="error" path="sexe"></form:errors>
   <div class="controls">
-    <form:input readonly="true" id="SexeEmploye" name="SexeEmploye" placeholder="" class="input-xlarge" type="text" path="sexe"/>
-    <form:errors cssClass="error" path="sexe"></form:errors>
+    <label class="radio inline" for="SexRadio-0">
+	<form:radiobutton value="Homme" path="sexe"/>
+      Homme
+    </label>
+    <label class="radio inline" for="SexRadio-1">
+      <form:radiobutton value="Femme" path="sexe"/>
+      Femme
+    </label>
   </div>
 </div>
 
